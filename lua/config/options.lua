@@ -52,31 +52,3 @@ opt.ignorecase = true -- Игнорировать регистр при поис
 opt.smartcase = true  -- Учитывать регистр если в поиске есть заглавные буквы (закомментировано)
 opt.hlsearch = true   -- Подсвечивать все найденные совпадения
 opt.incsearch = true  -- Подсвечивать совпадение при вводе поискового запроса
-
--- Подсветка ошибок Lsp в линию
-vim.diagnostic.config({
-  virtual_text = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  virtual_lines = false,
-  -- signs = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
-    },
-  },
-  float = {
-    source = true,
-    header = "Diagnostics:",
-    prefix = " ",
-    border = "single",
-    max_height = 10,
-    max_width = 130,
-    close_events = { "CursorMoved", "BufLeave", "WinLeave" },
-  }
-})
-vim.lsp.set_log_level("error")
