@@ -16,27 +16,27 @@ keymap.set("v", "<S-tab>", "<gv", { desc = "Уменьшить отступ TAB"
 -- Работа с системным буфером обмена
 keymap.set("v", "<leader>y", '"+y', { desc = "Копировать в системный буфер" })
 keymap.set(
-  "v",
-  "<leader>Y",
-  '"+y$',
-  { desc = "Копировать до конца строки в системный буфер" }
+	"v",
+	"<leader>Y",
+	'"+y$',
+	{ desc = "Копировать до конца строки в системный буфер" }
 )
 keymap.set("n", "<leader>p", '"+p', { desc = "Вставить из системного буфера" })
 keymap.set(
-  "n",
-  "<leader>P",
-  '"+P',
-  { desc = "Вставить перед курсором из системного буфера" }
+	"n",
+	"<leader>P",
+	'"+P',
+	{ desc = "Вставить перед курсором из системного буфера" }
 )
 
 -- Буфер и переключение вкладок
 keymap.set("n", "<tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Следующая вкладка" })
 keymap.set("n", "<S-tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Предыдущая вкладка" })
 keymap.set(
-  "n",
-  "<leader>e",
-  "<cmd>NvimTreeFocus<cr>",
-  { desc = "Открыть/Закрыть/Выбрать NvimTree" }
+	"n",
+	"<leader>e",
+	"<cmd>NvimTreeFocus<cr>",
+	{ desc = "Открыть/Закрыть/Выбрать NvimTree" }
 )
 
 -- Telescope
@@ -54,25 +54,25 @@ keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Список ком
 keymap.set("n", "<leader>gs", builtin.git_status, { desc = "Статус Git" })
 
 function M.for_lsp()
-  keymap.set("n", "<leader>flq", builtin.lsp_workspace_symbols)
-  keymap.set("n", "<leader>fly", builtin.lsp_implementations)
-  keymap.set("n", "<leader>fls", builtin.lsp_document_symbols, { desc = "Дерево обектов" })
-  keymap.set("n", "<leader>fll", builtin.lsp_references, { desc = "Поиск ссылок (references)" })
-  keymap.set("n", "<leader>flg", builtin.lsp_definitions, { desc = "Перейти к определению" })
-  keymap.set("n", "<Leader>fd", builtin.diagnostics, { desc = "Диагностика ошибок" })
-  keymap.set("n", "<Leader>ls", vim.lsp.buf.signature_help)
-  keymap.set("n", "<Leader>lr", vim.lsp.buf.rename)
-  keymap.set("n", "<Leader>lh", vim.lsp.buf.hover)
-  keymap.set("n", "<F3>", vim.lsp.buf.format)
-  keymap.set("n", "<F4>", vim.lsp.buf.code_action)
-  keymap.set("n", "<leader>lb", "<C-o>", { desc = "Назад к предыдущему месту" })
+	keymap.set("n", "<leader>flq", builtin.lsp_workspace_symbols)
+	keymap.set("n", "<leader>fly", builtin.lsp_implementations)
+	keymap.set("n", "<leader>fls", builtin.lsp_document_symbols, { desc = "Дерево обектов" })
+	keymap.set("n", "<leader>fll", builtin.lsp_references, { desc = "Поиск ссылок (references)" })
+	keymap.set("n", "<leader>flg", builtin.lsp_definitions, { desc = "Перейти к определению" })
+	keymap.set("n", "<Leader>fd", builtin.diagnostics, { desc = "Диагностика ошибок" })
+	keymap.set("n", "<Leader>ls", vim.lsp.buf.signature_help)
+	keymap.set("n", "<Leader>lr", vim.lsp.buf.rename)
+	keymap.set("n", "<Leader>lh", vim.lsp.buf.hover)
+	keymap.set("n", "<F3>", vim.lsp.buf.format)
+	keymap.set("n", "<F4>", vim.lsp.buf.code_action)
+	keymap.set("n", "<leader>lb", "<C-o>", { desc = "Назад к предыдущему месту" })
 
-  keymap.set("n", "<leader>tdd", function()
-    vim.diagnostic.config({
-      virtual_lines = not vim.diagnostic.config().virtual_lines,
-      virtual_text = not vim.diagnostic.config().virtual_text,
-    })
-  end, { desc = "Смена отображение текста ошибки" })
+	keymap.set("n", "<leader>tdd", function()
+		vim.diagnostic.config({
+			virtual_lines = not vim.diagnostic.config().virtual_lines,
+			virtual_text = not vim.diagnostic.config().virtual_text,
+		})
+	end, { desc = "Смена отображение текста ошибки" })
 end
 
 return M
