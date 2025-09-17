@@ -39,6 +39,12 @@ keymap.set(
 	{ desc = "Открыть/Закрыть/Выбрать NvimTree" }
 )
 
+-- Запуск Python
+vim.keymap.set("n", "<leader>rp", function()
+	local file = vim.fn.expand("%:p")
+	vim.cmd("terminal uv run " .. file)
+end, { desc = "Python run" })
+
 -- Telescope
 local builtin = require("telescope.builtin")
 keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Поиск файлов" })
