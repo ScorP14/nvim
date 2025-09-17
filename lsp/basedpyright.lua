@@ -1,4 +1,5 @@
 return {
+  name = "Basedpyright",
   cmd = { 'basedpyright-langserver', '--stdio' },
   filetypes = { 'python' },
   root_markers = {
@@ -14,7 +15,6 @@ return {
   settings = {
     basedpyright = {
       disableOrganizeImports = true,
-      -- disableLanguageServices = false,
 
       analysis = {
         diagnosticSeverityOverrides = {
@@ -36,6 +36,12 @@ return {
         autoImportCompletions = true,
         useLibraryCodeForTypes = true,
         -- diagnosticMode = 'workspace',
+        inlayHints = {
+          variableTypes = true,
+          functionReturnTypes = true,
+          callArgumentNames = true,
+        }
+
       },
     },
     python = {
