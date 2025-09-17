@@ -1,4 +1,5 @@
 return {
+  name = "Ruff",
   cmd = { 'ruff', 'server' },
   filetypes = { 'python' },
   root_markers = {
@@ -10,17 +11,16 @@ return {
     'pyrightconfig.json',
     '.git',
   },
-  -- TODO: Улучшить настройку LSP-Ruff
   init_options = {
     settings = {
-      -- args = {
-      --   "--select=E,F,UP,N,I,ASYNC,S,PTH",
-      --   "--line-length=60",
-      --   "--respect-gitignore",
-      -- },
-      -- lint = {
-      --   -- ignore = { "ALL" }
-      -- },
+      lint = {
+        ignore = { "ALL" }
+      },
     },
   },
+  on_attach = function(client)
+    client.server_capabilities.hoverProvider = false
+    client.server_capabilities.definitionProvider = false
+    client.server_capabilities.complitionProvider = false
+  end
 }
