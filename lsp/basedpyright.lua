@@ -26,6 +26,7 @@ return {
 					reportUnknownMemberType = false,
 					reportUnusedCallResult = false,
 					reportIncompatibleVariableOverride = false,
+					reportImplicitOverride = false,
 				},
 				ignore = {
 					"__pycache__",

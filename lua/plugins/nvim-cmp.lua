@@ -78,9 +78,9 @@ return {
 					{ name = "nvim_lsp", max_item_count = 10 },
 					{ name = "buffer", max_item_count = 5, keyword_length = 2 },
 					{ name = "path", max_item_count = 3, keyword_length = 2 },
-					{ name = "luasnip", max_item_count = 10 },
-					{ name = "nvim_lua", max_item_count = 5 },
-					{ name = "cmdline", max_item_count = 3 },
+					{ name = "luasnip", max_item_count = 10, keyword_length = 2 },
+					{ name = "nvim_lua", max_item_count = 5, keyword_length = 2 },
+					{ name = "cmdline", max_item_count = 3, keyword_length = 2 },
 				}),
 				window = {
 					completion = cmp.config.window.bordered(),
