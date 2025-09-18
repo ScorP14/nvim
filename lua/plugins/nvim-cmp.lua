@@ -23,18 +23,12 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-
 			"L3MON4D3/LuaSnip",
-
-			"rafamadriz/friendly-snippets",
-			"saadparwaiz1/cmp_luasnip",
-
 			"onsails/lspkind.nvim",
 		},
 		config = function()
@@ -46,7 +40,6 @@ return {
 				completion = {
 					keyword_length = 1,
 					completeopt = "menu,noselect", -- menuone
-					-- completeopt = "menu",
 				},
 				snippet = {
 					expand = function(args)
@@ -74,18 +67,15 @@ return {
 						end
 					end),
 				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp", max_item_count = 10 },
-					{ name = "buffer", max_item_count = 5, keyword_length = 2 },
-					{ name = "path", max_item_count = 3, keyword_length = 2 },
-					{ name = "luasnip", max_item_count = 10, keyword_length = 2 },
-					{ name = "nvim_lua", max_item_count = 5, keyword_length = 2 },
-					{ name = "cmdline", max_item_count = 3, keyword_length = 2 },
-				}),
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
 				},
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp", max_item_count = 10 },
+					{ name = "buffer", max_item_count = 5, keyword_length = 2 },
+					{ name = "path", max_item_count = 3, keyword_length = 2 },
+				}),
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol_text",
@@ -93,9 +83,7 @@ return {
 							buffer = "[Buffer]",
 							nvim_lsp = "[LSP]",
 							luasnip = "[LuaSnip]",
-							nvim_lua = "[Lua]",
 							path = "[Path]",
-							latex_symbols = "[Latex]",
 						},
 					}),
 				},
