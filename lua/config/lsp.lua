@@ -48,7 +48,8 @@ vim.diagnostic.config({
 vim.lsp.set_log_level("error")
 
 vim.lsp.config("*", {
-  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
+  capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
+  -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
   root_markers = { ".git" },
 })
 
