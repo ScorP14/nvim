@@ -1,14 +1,8 @@
--- TODO: Config!
 return {
   'saghen/blink.cmp',
   lazy = false,
   dependencies = {
     'rafamadriz/friendly-snippets',
-    -- 'L3MON4D3/LuaSnip',
-    -- 'hrsh7th/cmp-nvim-lsp',
-    -- 'hrsh7th/cmp-buffer',
-    -- 'hrsh7th/cmp-path',
-    -- 'hrsh7th/cmp-cmdline',
   },
   version = '1.*',
 
@@ -21,22 +15,28 @@ return {
       ['<Up>'] = { 'select_prev', 'fallback' },
       ['<Down>'] = { 'select_next', 'fallback' },
     },
-
     completion = {
-      trigger = { prefetch_on_insert = false },
+      accept = { auto_brackets = { enabled = true }, }, -- Авто ()
+      trigger = { show_on_trigger_character = true },
+      keyword = { range = 'full' },
       menu = {
         border = 'single',
+        draw = { treesitter = { "lsp" } },
+      },
+      ghost_text = {
+        enabled = true,
+        show_with_menu = false,
       },
       documentation = {
         window = { border = 'single' },
         auto_show = true,
         auto_show_delay_ms = 500
-      }
+      },
     },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'buffer', 'snippets' },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
   },
-  opts_extend = { "sources.default" }
+  -- opts_extend = { "sources.default" }
 }
