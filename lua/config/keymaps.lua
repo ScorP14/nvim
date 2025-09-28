@@ -4,6 +4,7 @@ local keymap = vim.keymap
 -- Общие клавиатурные сокращения
 keymap.set("i", "jk", "<Esc>", { desc = "Выход из режима вставки" })
 keymap.set("n", "<leader>q", "<cmd>nohlsearch<CR>", { desc = "Отменить подсветку поиска" })
+keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Сохранить файл" })
 
 -- Перемещение строк в визуальном режиме
 keymap.set("v", "<S-down>", ":m '>+1<cr>gv=gv", { desc = "Переместить выделение вниз" })
@@ -59,19 +60,20 @@ keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Список ве�
 keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Список коммитов Git" })
 keymap.set("n", "<leader>gs", builtin.git_status, { desc = "Статус Git" })
 
+-- LSP
 function M.for_lsp()
-  keymap.set("n", "<leader>flq", builtin.lsp_workspace_symbols)
-  keymap.set("n", "<leader>fly", builtin.lsp_implementations)
-  keymap.set("n", "<leader>fls", builtin.lsp_document_symbols, { desc = "Дерево обектов" })
-  keymap.set("n", "<leader>fll", builtin.lsp_references, { desc = "Поиск ссылок (references)" })
-  keymap.set("n", "<leader>flg", builtin.lsp_definitions, { desc = "Перейти к определению" })
-  keymap.set("n", "<Leader>fd", builtin.diagnostics, { desc = "Диагностика ошибок" })
+  keymap.set("n", "<leader>lq", builtin.lsp_workspace_symbols)
+  keymap.set("n", "<leader>ly", builtin.lsp_implementations)
+  keymap.set("n", "<leader>lds", builtin.lsp_document_symbols, { desc = "Дерево обектов" })
+  keymap.set("n", "<leader>ll", builtin.lsp_references, { desc = "Поиск ссылок (references)" })
+  keymap.set("n", "<leader>lg", builtin.lsp_definitions, { desc = "Перейти к определению" })
   keymap.set("n", "<Leader>ls", vim.lsp.buf.signature_help)
   keymap.set("n", "<Leader>lr", vim.lsp.buf.rename)
   keymap.set("n", "<Leader>lh", vim.lsp.buf.hover)
+  keymap.set("n", "<Leader>lfd", builtin.diagnostics, { desc = "Диагностика ошибок" })
+  keymap.set("n", "<leader>lb", "<C-o>", { desc = "Назад к предыдущему месту" })
   keymap.set("n", "<F3>", vim.lsp.buf.format)
   keymap.set("n", "<F4>", vim.lsp.buf.code_action)
-  keymap.set("n", "<leader>lb", "<C-o>", { desc = "Назад к предыдущему месту" })
 
   keymap.set("n", "<leader>tdd", function()
     vim.diagnostic.config({
