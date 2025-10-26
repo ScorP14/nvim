@@ -74,7 +74,7 @@ function M.for_lsp()
   keymap.set("n", "<leader>lb", "<C-o>", { desc = "Назад к предыдущему месту" })
   keymap.set("n", "<F3>", vim.lsp.buf.format)
   keymap.set("n", "<F4>", vim.lsp.buf.code_action)
-
+  keymap.set("n", "<Leader>ldd", vim.diagnostic.open_float)
   keymap.set("n", "<leader>tdd", function()
     vim.diagnostic.config({
       virtual_lines = not vim.diagnostic.config().virtual_lines,
