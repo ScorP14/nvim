@@ -4,7 +4,12 @@ return {
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-      filters = { dotfiles = false },
+      filters = {
+        dotfiles = false,
+        custom = {
+          "__pycache__",
+        },
+      },
       disable_netrw = true,
       hijack_cursor = true,
       sync_root_with_cwd = true,
