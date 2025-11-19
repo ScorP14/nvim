@@ -1,6 +1,68 @@
 local M = {}
 local keymap = vim.keymap
 
+local function close_other_buffers()
+  local cur_buf = vim.api.nvim_get_current_buf()
+  local deleted = 0
+  local skipped = 0
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_is_loaded(buf) then
+      goto continue
+    end
+
+    if buf == cur_buf then
+      goto continue
+    end
+
+    local bo = vim.bo[buf]
+    local name = vim.api.nvim_buf_get_name(buf) == "" and "[No Name]" or
+        vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
+
+    if bo.modified then
+      vim.notify("Skipped modified buffer: " .. name, vim.log.levels.WARN)
+      skipped = skipped + 1
+      goto continue
+    end
+
+    local buftype = bo.buftype
+    if buftype ~= "" then
+      -- Список "защищаемых" buftype. Можно расширить.
+      local protected = vim.tbl_contains({
+        "terminal", "help", "quickfix", "location", "nofile", "prompt", "popup"
+      }, buftype)
+      if protected then
+        vim.notify(string.format("Skipped special buffer (%s): %s", buftype, name), vim.log.levels.INFO)
+        skipped = skipped + 1
+        goto continue
+      end
+    end
+
+    if not bo.buflisted then
+      goto continue
+    end
+
+    -- ✅ Буфер безопасен для удаления
+    local ok, err = pcall(vim.api.nvim_buf_delete, buf, { force = false })
+    if ok then
+      deleted = deleted + 1
+    else
+      vim.notify("Failed to delete buffer " .. name .. ": " .. tostring(err), vim.log.levels.ERROR)
+      skipped = skipped + 1
+    end
+
+    ::continue::
+  end
+
+  vim.notify(
+    string.format("Buffers closed: %d | Skipped: %d", deleted, skipped),
+    deleted > 0 and vim.log.levels.INFO or vim.log.levels.WARN
+  )
+end
+vim.keymap.set("n", "<leader>bdd", close_other_buffers, {
+  desc = "Закрыть все открытые буфферы, кроме текущего. (Пропускаем Модифицированые/Спецальные)",
+})
+
 -- Общие клавиатурные сокращения
 keymap.set("i", "jk", "<Esc>", { desc = "Выход из режима вставки" })
 keymap.set("n", "<leader>q", "<cmd>nohlsearch<CR>", { desc = "Отменить подсветку поиска" })
