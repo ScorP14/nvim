@@ -57,5 +57,6 @@ vim.lsp.config("*", {
 vim.lsp.enable({
   "lua-language-server",
   "basedpyright",
+  -- "ty",
   "ruff",
 })
