@@ -25,6 +25,7 @@ return {
           reportUnknownArgumentType = false,
           reportUnknownMemberType = false,
           reportUnusedCallResult = false,
+          reportUnusedParameter = false,
           reportIncompatibleVariableOverride = false,
           reportImplicitOverride = false,
         },
