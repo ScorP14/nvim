@@ -55,6 +55,7 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.enable({
+  "biome",
   "lua-language-server",
   "basedpyright",
   -- "ty",
