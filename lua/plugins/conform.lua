@@ -3,8 +3,17 @@ return {
   lazy = false,
   opts = {
     formatters_by_ft = {
-      lua = { "lua-language-server" },
-      python = { "ruff_organize_imports", "ruff_format" },
+      python     = { "ruff_organize_imports", "ruff_format" },
+
+      jinja      = { "prettier" },
+      htmldjango = { "prettier" },
+      html       = { "prettier" },
+
+      css        = { "prettier" },
+      less       = { "prettier" },
+      scss       = { "prettier" },
+
+      json       = { "prettier" },
     },
     format_on_save = {
       lsp_format = "fallback",

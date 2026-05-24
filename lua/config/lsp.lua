@@ -46,7 +46,7 @@ vim.diagnostic.config({
   },
 })
 
-vim.lsp.set_log_level("error")
+vim.lsp.log.set_level("error")
 
 vim.lsp.config("*", {
   capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
@@ -55,9 +55,11 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.enable({
-  "biome",
-  "lua-language-server",
+  -- Python
   "basedpyright",
-  -- "ty",
   "ruff",
+
+  -- Other
+  "typescript-lsp",
+  "lua-language-server",
 })
