@@ -1,10 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter").setup({
         highlight = { enable = true },
         indent = { enable = true },
         sync_install = false,
@@ -16,6 +17,7 @@ return {
           "diff",
           "gitignore",
           "html",
+          "htmldjango",
           "http",
           "ini",
           "jinja",
@@ -24,8 +26,8 @@ return {
           "lua",
           "luadoc",
           "luap",
-          "markdown",
-          "markdown_inline",
+          -- "markdown",
+          -- "markdown_inline",
           "nginx",
           "python",
           "query",
