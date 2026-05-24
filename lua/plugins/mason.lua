@@ -1,9 +1,11 @@
 return {
   "mason-org/mason.nvim",
   lazy = false,
-  dependencies = {
-    { "mason-org/mason-lspconfig.nvim" },
-  },
+  --  "basedpyright",
+  --  "ruff",
+  --  "prettier",
+  --  "typescript-language-server",
+  --  "lua-language-server"
   opts = {
     ui = {
       icons = {
