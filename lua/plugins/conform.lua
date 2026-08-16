@@ -2,11 +2,15 @@ return {
   "stevearc/conform.nvim",
   lazy = false,
   opts = {
+    formatters = {
+      djlint = { append_args = { "--indent", "2" } },
+      prettier = { append_args = { "--print-width", "120" } },
+    },
     formatters_by_ft = {
       python     = { "ruff_organize_imports", "ruff_format" },
 
-      jinja      = { "prettier" },
-      htmldjango = { "prettier" },
+      jinja      = { "djlint" },
+      htmldjango = { "djlint" },
       html       = { "prettier" },
 
       css        = { "prettier" },
