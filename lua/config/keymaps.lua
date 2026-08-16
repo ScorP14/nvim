@@ -60,16 +60,9 @@ keymap.set("v", "<S-tab>", "<gv", { desc = "Уменьшить отступ TAB"
 
 -- Работа с системным буфером обмена
 keymap.set("v", "<leader>y", '"+y', { desc = "Копировать в системный буфер" })
-keymap.set(
-  "v",
-  "<leader>Y",
-  '"+y$',
-  { desc = "Копировать до конца строки в системный буфер" }
-)
+keymap.set("v", "<leader>Y", '"+y$', { desc = "Копировать до конца строки в системный буфер" })
 keymap.set("n", "<leader>p", '"+p', { desc = "Вставить из системного буфера" })
-keymap.set("n", "<leader>P", '"+P',
-  { desc = "Вставить перед курсором из системного буфера" }
-)
+keymap.set("n", "<leader>P", '"+P', { desc = "Вставить перед курсором из системного буфера" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
