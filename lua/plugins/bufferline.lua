@@ -3,6 +3,10 @@ return {
   version = "*",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = "nvim-tree/nvim-web-devicons",
+  keys = {
+    { "<tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Следующая вкладка" } },
+    { "<S-tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Предыдущая вкладка" } },
+  },
   opts = {
     options = {
       -- mode = "buffer", -- buffer, tabs

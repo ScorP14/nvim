@@ -67,28 +67,9 @@ keymap.set(
   { desc = "Копировать до конца строки в системный буфер" }
 )
 keymap.set("n", "<leader>p", '"+p', { desc = "Вставить из системного буфера" })
-keymap.set(
-  "n",
-  "<leader>P",
-  '"+P',
+keymap.set("n", "<leader>P", '"+P',
   { desc = "Вставить перед курсором из системного буфера" }
 )
-
--- Буфер и переключение вкладок
-keymap.set("n", "<tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Следующая вкладка" })
-keymap.set("n", "<S-tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Предыдущая вкладка" })
-keymap.set(
-  "n",
-  "<leader>e",
-  "<cmd>NvimTreeFocus<cr>",
-  { desc = "Открыть/Закрыть/Выбрать NvimTree" }
-)
-
--- Запуск Python
-vim.keymap.set("n", "<leader>rp", function()
-  local file = vim.fn.expand("%:p")
-  vim.cmd("terminal uv run " .. file)
-end, { desc = "Python run" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
