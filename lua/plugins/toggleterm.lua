@@ -2,6 +2,9 @@ return {
   'akinsho/toggleterm.nvim',
   version = '*',
   lazy = false,
+  keys = {
+    { "<leader>t", "<cmd>ToggleTerm<cr>", { desc = "Открыть/закрыть терминал" } },
+  },
 
   config = function()
     require('toggleterm').setup({})
@@ -43,8 +46,6 @@ return {
         return
       end
 
-      local cmd = vim.fn.shellescape(python) .. ' ' .. vim.fn.shellescape(filepath)
-
       -- Закрываем предыдущий Python-терминал, если он был
       if python_runner then
         pcall(function()
@@ -53,18 +54,13 @@ return {
       end
 
       python_runner = Terminal:new({
-        cmd = cmd,
+        cmd = vim.fn.shellescape(python) .. ' ' .. vim.fn.shellescape(filepath),
         dir = vim.fn.expand('%:p:h'), -- рабочая папка как у файла
         close_on_exit = false,        -- false: после завершения скрипта терминал остаётся открытым
       })
 
       python_runner:toggle()
     end
-
-    -- Обычный терминал
-    vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<cr>', {
-      desc = 'Открыть/закрыть терминал',
-    })
 
     -- Запуск текущего Python-файла
     vim.keymap.set('n', '<leader>rp', run_current_python, {
