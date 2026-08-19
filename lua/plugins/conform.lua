@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  lazy = false,
+  event = "BufWritePre",
   opts = {
     formatters = {
       djlint = { append_args = { "--indent", "2" } },
