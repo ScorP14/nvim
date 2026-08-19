@@ -7,7 +7,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = "dracula", --dracula, gruvbox, onedark, tokyonignt
+      theme = "auto", --dracula, gruvbox, onedark, tokyonignt
     },
     sections = {
       lualine_a = { "mode" },
