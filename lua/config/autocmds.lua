@@ -27,17 +27,16 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 -- Временно подсвечивает скопированный участок текста
 autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
-  pattern = "*",
   callback = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
   end,
   desc = "Highlight text on yank",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = "jsonc",
   callback = function()
     vim.opt_local.commentstring = "// %s"
   end,
+  desc = "Set commentstring for JSONC",
 })

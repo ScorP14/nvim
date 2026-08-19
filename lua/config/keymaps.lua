@@ -14,9 +14,6 @@ local function close_other_buffers()
     end
 
     local bo = vim.bo[buf]
-    local name = vim.api.nvim_buf_get_name(buf) == "" and "[No Name]" or
-        vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
-
     if bo.modified then
       goto continue
     end
@@ -37,12 +34,12 @@ local function close_other_buffers()
     end
 
     -- ✅ Буфер безопасен для удаления
-    local ok, err = pcall(vim.api.nvim_buf_delete, buf, { force = false })
+    pcall(vim.api.nvim_buf_delete, buf, { force = false })
     ::continue::
   end
 end
 vim.keymap.set("n", "<leader>bdd", close_other_buffers, {
-  desc = "Закрыть все открытые буфферы, кроме текущего. (Пропускаем Модифицированые/Спецальные)",
+  desc = "Закрыть все буферы, кроме текущего",
 })
 
 -- Общие клавиатурные сокращения
@@ -102,3 +99,16 @@ function M.for_lsp()
 end
 
 return M
+
+
+
+-- [ ] Сделать LSP keymaps buffer-local через args.buf.
+-- [ ] Передавать buf в M.for_lsp(buf).
+-- [ ] Добавить desc всем LSP keymaps.
+-- [ ] Для vim.lsp.buf.format() явно выбрать Ruff как formatter.
+-- [ ] Удалить неиспользуемый name из close_other_buffers().
+-- [ ] Упростить pcall(vim.api.nvim_buf_delete, ...).
+-- [ ] Вынести protected_buftypes из цикла.
+-- [ ] Удалить старый закомментированный cmp_nvim_lsp, если используется blink.cmp.
+-- [ ] Привести <leader> / <Leader> к единому стилю.
+-- [ ] Проверить необходимость LSP foldingRange capabilities.

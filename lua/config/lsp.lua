@@ -25,7 +25,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
   virtual_lines = false,
-  -- signs = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "",
@@ -35,7 +34,7 @@ vim.diagnostic.config({
     },
   },
   float = {
-    source = true,
+    source = "if_many",
     header = "Diagnostics:",
     prefix = " ",
     border = "single",
@@ -50,8 +49,6 @@ vim.lsp.log.set_level("error")
 
 vim.lsp.config("*", {
   capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
-  -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
-  root_markers = { ".git" },
 })
 
 vim.lsp.enable({
