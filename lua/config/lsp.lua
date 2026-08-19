@@ -17,7 +17,7 @@ local capabilities = {
 -- Подсветка ошибок Lsp в линию
 vim.diagnostic.config({
   virtual_text = {
-    source = "if_meny",
+    source = "if_many",
     -- TODO: Установить иконку для prefix
     prefix = "*",
   },
