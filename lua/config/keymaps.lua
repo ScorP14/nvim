@@ -98,6 +98,7 @@ function M.for_lsp()
   end, { desc = "Смена отображение текста ошибки" })
 end
 
+keymap.set("n", "<Leader>e", "<cmd>NvimTreeFocus<cr>")
 return M
 
 

@@ -3,13 +3,6 @@ return {
     "nvim-tree/nvim-tree.lua",
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    keys = {
-      { "<leader>e", '<cmd>NvimTreeFocus<cr>', { desc = "Открыть/Закрыть/Выбрать NvimTree" } },
-      { "<Left>", function() require("nvim-tree.api").node.navigate.parent_close() end, { desc = "Close Folder" } },
-      { "h", function() require("nvim-tree.api").node.navigate.parent_close() end, { desc = "Close Folder" } },
-      { "<Right>", function() require("nvim-tree.api").node.open.edit() end, { desc = "Open Folder or File" } },
-      { "l", function() require("nvim-tree.api").node.open.edit() end, { desc = "Open Folder or File" } },
-    },
     opts = {
       filters = {
         dotfiles = false,
@@ -47,6 +40,23 @@ return {
           },
         },
       },
+      on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+        local function opts(desc)
+          return {
+            desc = "nvim-tree: " .. desc,
+            buffer = bufnr,
+            noremap = true,
+            silent = true,
+            nowait = true,
+          }
+        end
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.set("n", "<Left>", api.node.navigate.parent_close, opts("Close Folder"))
+        vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Folder"))
+        vim.keymap.set("n", "<Right>", api.node.open.edit, opts("Open Folder or File"))
+        vim.keymap.set("n", "l", api.node.open.edit, opts("Open Folder or File"))
+      end,
     },
   },
 }
