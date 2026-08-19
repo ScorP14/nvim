@@ -21,6 +21,6 @@ return {
   on_attach = function(client)
     client.server_capabilities.hoverProvider = false
     client.server_capabilities.definitionProvider = false
-    client.server_capabilities.complitionProvider = false
+    client.server_capabilities.completionProvider = false
   end,
 }
