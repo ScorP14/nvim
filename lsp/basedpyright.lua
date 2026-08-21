@@ -17,6 +17,7 @@ return {
       disableOrganizeImports = true,
 
       analysis = {
+        extraPaths = { "src" },
         diagnosticSeverityOverrides = {
           -- "error", "warning", "information", "true", "false", "none"
           reportExplicitAny = false,
